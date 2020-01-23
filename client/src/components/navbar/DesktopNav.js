@@ -13,6 +13,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -58,7 +59,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function PrimarySearchAppBar() {
+const DesktopNav = ({auth}) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -87,6 +88,22 @@ export default function PrimarySearchAppBar() {
       <MenuItem onClick={handleMenuClose}>My account</MenuItem>
     </Menu>
   );
+
+  const renderButtons = () => {
+    if (auth) {
+      return (
+        <Button className="ml-2" variant="outlined" href="/api/logout" color="primary">
+          Sign Out
+        </Button>
+      )
+    } else {
+      return (
+        <Button className="ml-2" variant="outlined" href="/auth/google" color="primary">
+          Sign In
+        </Button>
+      )
+    }
+  };
 
   return (
     <div className={classes.grow}>
@@ -127,13 +144,17 @@ export default function PrimarySearchAppBar() {
             >
               <AccountCircle/>
             </IconButton>
-            <Button className="ml-2" variant="outlined" href="http://localhost:9000/auth/google" color="primary" >
-              Sign In
-            </Button>
+            {renderButtons()}
           </div>
         </Toolbar>
       </AppBar>
       {renderMenu}
     </div>
   );
-}
+};
+
+const mapStateToProps = state => {
+  return {auth: state.auth}
+};
+
+export default connect(mapStateToProps, null)(DesktopNav)

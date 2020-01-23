@@ -11,7 +11,7 @@ const MobileNav = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="http://localhost:9000/auth/google">Sign In</Nav.Link>
+          <Nav.Link href="/auth/google">Sign In</Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
             <NavDropdown.Item href="#action/3.2">Account</NavDropdown.Item>
