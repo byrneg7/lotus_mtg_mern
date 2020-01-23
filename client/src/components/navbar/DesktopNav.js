@@ -84,19 +84,21 @@ const DesktopNav = ({auth}) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link className="ml-2" to='/account'>
+          Account
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <a className="ml-2" href="/api/logout">
+          Sign Out
+        </a>
+      </MenuItem>
     </Menu>
   );
 
   const renderButtons = () => {
-    if (auth) {
-      return (
-        <Button className="ml-2" variant="outlined" href="/api/logout" color="primary">
-          Sign Out
-        </Button>
-      )
-    } else {
+    if (!auth) {
       return (
         <Button className="ml-2" variant="outlined" href="/auth/google" color="primary">
           Sign In
@@ -118,32 +120,25 @@ const DesktopNav = ({auth}) => {
             <div className={classes.searchIcon}>
               <SearchIcon/>
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{'aria-label': 'search'}}
+            <InputBase placeholder="Search Cards…" className="shadow" style={{borderRadius: 10}}
+                       classes={{root: classes.inputRoot, input: classes.inputInput}}
+                       inputProps={{'aria-label': 'search'}}
             />
           </div>
           <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon/>
-              </Badge>
-            </IconButton>
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <AccountCircle/>
-            </IconButton>
+            <span className={auth ? '' : 'd-none'}>
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle/>
+              </IconButton>
+            </span>
             {renderButtons()}
           </div>
         </Toolbar>
