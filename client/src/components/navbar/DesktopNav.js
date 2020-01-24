@@ -6,14 +6,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
+import CardNameInput from "./CardNameInput";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -90,14 +89,14 @@ const DesktopNav = ({auth}) => {
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
-        <a className="ml-2" href="/api/logout">
+        <a className="ml-2 font-grey" href="/api/logout">
           Sign Out
         </a>
       </MenuItem>
     </Menu>
   );
 
-  const renderButtons = () => {
+  const renderLinks = () => {
     if (!auth) {
       return (
         <Button className="ml-2" variant="outlined" href="/auth/google" color="primary">
@@ -116,15 +115,7 @@ const DesktopNav = ({auth}) => {
               Lotus MTG
             </Typography>
           </Link>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon/>
-            </div>
-            <InputBase placeholder="Search Cards…" className="shadow" style={{borderRadius: 10}}
-                       classes={{root: classes.inputRoot, input: classes.inputInput}}
-                       inputProps={{'aria-label': 'search'}}
-            />
-          </div>
+          <CardNameInput additionalClassNames="ml-4"/>
           <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
             <span className={auth ? '' : 'd-none'}>
@@ -139,7 +130,7 @@ const DesktopNav = ({auth}) => {
                 <AccountCircle/>
               </IconButton>
             </span>
-            {renderButtons()}
+            {renderLinks()}
           </div>
         </Toolbar>
       </AppBar>
