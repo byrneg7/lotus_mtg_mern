@@ -25,7 +25,7 @@ app.use(passport.session());
 require('./routes/authRoutes')(app);
 
 // ---------------- db ------------------------------------
-mongoose.connect(keys.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(keys.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on("error", () => {
   console.log("> error occurred from the database");
