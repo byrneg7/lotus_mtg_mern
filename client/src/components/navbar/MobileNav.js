@@ -29,12 +29,12 @@ const MobileNav = ({auth}) => {
       <Link to="/">
         <Navbar.Brand>Lotus MTG</Navbar.Brand>
       </Link>
-      <CardNameInput/>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           {renderLinks()}
           {renderMenu()}
+          <CardNameInput/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
