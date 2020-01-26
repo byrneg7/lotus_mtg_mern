@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col } from 'reactstrap';
+import { Col } from 'reactstrap';
 
 import CardNameInput from "../shared/CardNameInput";
 import './home.scss';

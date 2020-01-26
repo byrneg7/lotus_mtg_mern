@@ -1,19 +1,43 @@
 import React, { useState } from 'react';
 import { Form, Col, InputGroup } from "react-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner, faSearch } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions/index'
 import './shared.scss';
+import { makeToast } from "../../toasts";
 
 const CardNameInput = ({cardSearch, additionalClassNames = ''}) => {
   const [searchTerm, setSearchTerm] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
-    const res = await axios.get(`/mtg/cards/${searchTerm}`);
-    cardSearch(res.data)
+    if (searchTerm.length > 0) {
+      setLoading(true);
+      const res = await axios.get(`/mtg/cards/${searchTerm}`)
+      setLoading(false);
+      if (res.data.cards.length > 0) {
+        cardSearch(res.data)
+      } else {
+        makeToast('error', 'No cards found with this search term')
+      }
+    }
+  };
+
+  const renderSearchIcon = () => {
+    if (loading) {
+      return <FontAwesomeIcon icon={faSpinner} spin/>;
+    } else {
+      return <FontAwesomeIcon icon={faSearch}/>;
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSubmit()
+    }
   };
 
   return (
@@ -23,11 +47,12 @@ const CardNameInput = ({cardSearch, additionalClassNames = ''}) => {
           <Form.Control type="text"
                         placeholder="Search for cards.."
                         className="round-left-corners"
+                        onKeyPress={e => handleKeyPress(e)}
                         onChange={e => setSearchTerm(e.target.value)}
           />
           <InputGroup.Append className="mouse-pointer card-search-button">
             <InputGroup.Text className="round-right-corners" onClick={() => handleSubmit()}>
-              <FontAwesomeIcon icon={faSearch}/>
+              {renderSearchIcon()}
             </InputGroup.Text>
           </InputGroup.Append>
         </InputGroup>

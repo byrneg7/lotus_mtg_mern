@@ -29,7 +29,7 @@ const DeckModal = ({open, toggle, decks, setDecks}) => {
 
   const renderForm = () => {
     return (
-      <Form>
+      <Form submit={e => e.preventDefault()}>
         <FormGroup>
           <Label for="exampleEmail">Name</Label>
           <Input

@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import uniqid from "uniqid";
+import { Col, Row } from "react-bootstrap";
 
 const SearchResults = ({cards}) => {
 
@@ -8,9 +9,9 @@ const SearchResults = ({cards}) => {
     if (cards && cards.cards) {
       return cards.cards.map(card => {
         return (
-          <div key={uniqid()}>
-            {card.name}
-          </div>
+          <Row key={uniqid()} className="justify-content-center">
+            <img src={card.imageUrl} alt="mtg card"/>
+          </Row>
         )
       });
     } else {
