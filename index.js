@@ -22,10 +22,12 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.json());
 
 // ---------------- routes --------------------------------
 require('./routes/authRoutes')(app);
 require('./routes/deckRotues')(app);
+require('./routes/mtg_routes')(app);
 
 // ---------------- db ------------------------------------
 mongoose.connect(keys.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});

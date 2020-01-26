@@ -10,6 +10,10 @@ const deckSchema = new Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
+  },
+  cards: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'cards'
   }
 });
 

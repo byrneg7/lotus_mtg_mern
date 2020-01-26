@@ -15,7 +15,16 @@ const userSchema = new Schema({
     required: 'Email is required'
   },
   decks: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'decks'}
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'decks'
+    }
+  ],
+  cards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'cards'
+    }
   ]
 });
 

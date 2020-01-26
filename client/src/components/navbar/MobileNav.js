@@ -3,8 +3,6 @@ import { Navbar, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
-import CardNameInput from "./CardNameInput";
-
 const MobileNav = ({auth}) => {
   const renderMenu = () => {
     if (auth) {
@@ -42,7 +40,6 @@ const MobileNav = ({auth}) => {
         <Nav className="mr-auto">
           {renderLinks()}
           {renderMenu()}
-          <CardNameInput/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

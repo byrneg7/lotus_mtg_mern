@@ -10,7 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import CardNameInput from "./CardNameInput";
+import CardNameInput from "../shared/CardNameInput";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -118,7 +118,7 @@ const DesktopNav = ({auth}) => {
               Lotus MTG
             </Typography>
           </Link>
-          <CardNameInput additionalClassNames="ml-4"/>
+          <CardNameInput additionalClassNames="ml-4 mt-3"/>
           <div className={classes.grow}/>
           <div className={classes.sectionDesktop}>
             <span className={auth ? '' : 'd-none'}>

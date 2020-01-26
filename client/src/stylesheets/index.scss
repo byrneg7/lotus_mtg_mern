@@ -1,3 +1,15 @@
 .font-grey {
   color: grey;
 }
+
+.mouse-pointer {
+  cursor: pointer;
+}
+
+.round-left-corners{
+  border-radius: 25px 25px;
+}
+
+.round-right-corners{
+  border-radius: 0px 25px 25px 0px;
+}
