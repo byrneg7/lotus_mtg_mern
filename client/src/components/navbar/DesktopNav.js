@@ -5,10 +5,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
@@ -83,6 +81,11 @@ const DesktopNav = ({auth}) => {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
+      <MenuItem onClick={handleMenuClose}>
+        <Link className="ml-2" to='/decks'>
+          Decks
+        </Link>
+      </MenuItem>
       <MenuItem onClick={handleMenuClose}>
         <Link className="ml-2" to='/account'>
           Account

@@ -2,9 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
-const keys = require('./config/keys');
 const passport = require('passport');
 
+const keys = require('./config/keys');
+
+require('./models/Deck');
 require('./models/User');
 require('./services/passportConfig');
 
@@ -23,6 +25,7 @@ app.use(passport.session());
 
 // ---------------- routes --------------------------------
 require('./routes/authRoutes')(app);
+require('./routes/deckRotues')(app);
 
 // ---------------- db ------------------------------------
 mongoose.connect(keys.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});

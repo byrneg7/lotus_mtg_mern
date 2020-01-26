@@ -1,16 +1,24 @@
 import React from 'react';
-import { Navbar, Nav, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+
 import CardNameInput from "./CardNameInput";
 
 const MobileNav = ({auth}) => {
   const renderMenu = () => {
     if (auth) {
       return (
-        <div className="mt-2">
-          <Link to="/account">Profile</Link>
-          <Nav.Link href="/api/logout">Sign Out</Nav.Link>
+        <div className="col mt-2">
+          <Row className="mb-2">
+            <Link to="/decks">Decks</Link>
+          </Row>
+          <Row className="mb-2">
+            <Link to="/account">Profile</Link>
+          </Row>
+          <Row className="mb-2">
+            <a href="/api/logout">Sign Out</a>
+          </Row>
         </div>
       )
     }

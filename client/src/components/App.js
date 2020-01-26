@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+import * as actions from '../actions';
 import Routes from "./Routes";
-import Index from './navbar/Index'
+import Navbar from './navbar/Index'
 
 class App extends React.Component{
   componentDidMount() {
@@ -13,8 +15,9 @@ class App extends React.Component{
   render(){
     return (
       <>
-        <Index />
+        <Navbar />
         <div className="container">
+          <ToastContainer />
           <Routes/>
         </div>
       </>
