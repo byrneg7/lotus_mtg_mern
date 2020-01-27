@@ -1,7 +1,7 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 
-import CardNameInput from "../shared/CardNameInput";
+import CardNameInput from "../card_search/CardNameInput";
 import './home.scss';
 import SearchResults from "./SearchResults";
 

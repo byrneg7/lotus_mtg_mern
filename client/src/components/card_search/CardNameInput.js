@@ -6,7 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 
 import * as actions from '../../actions/index'
-import './shared.scss';
+import './card_search.scss';
 import { makeToast } from "../../toasts";
 
 const CardNameInput = ({cardSearch, additionalClassNames = ''}) => {

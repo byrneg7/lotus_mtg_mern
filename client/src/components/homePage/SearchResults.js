@@ -1,25 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import uniqid from "uniqid";
-import { Row } from "react-bootstrap";
+import CardDisplay from "../card_search/card_gallery/CardDisplay";
 
 const SearchResults = ({cards}) => {
 
   const renderCards = () => {
     if (cards && cards.cards) {
-      return cards.cards.map(card => {
-        return (
-          // TODO: render react-photo-gallery component here
-          <Row key={uniqid()} className="justify-content-center">
-            <img src={card.imageUrl} alt="mtg card"/>
-          </Row>
-        )
-      });
+      return <CardDisplay cards={cards.cards}/>
     } else {
       return null;
     }
   };
-
   return renderCards()
 };
 

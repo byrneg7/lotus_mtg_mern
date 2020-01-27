@@ -10,7 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import CardNameInput from "../shared/CardNameInput";
+import CardNameInput from "../card_search/CardNameInput";
 
 const useStyles = makeStyles(theme => ({
   grow: {
