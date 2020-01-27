@@ -4,7 +4,7 @@ import PhotoGallery from './PhotoGallery';
 const CardDisplay = ({cards = null}) => {
 
   const constructPhotoList = (cards) => {
-    return cards.map((card) => {
+    return cards.map(card => {
       return (
         {
           src: card.imageUrl,

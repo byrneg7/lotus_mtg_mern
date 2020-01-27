@@ -6,9 +6,41 @@ const cardSchema = new Schema({
     type: String,
     required: 'Card name required'
   },
-  description: {
+  text: {
     type: String,
-    required: 'Card description required'
+    required: 'Card text required'
+  },
+  imageUrl: {
+    type: String,
+    required: 'Card image URL required'
+  },
+  cardTypes: {
+    type: [String],
+    required: 'Card type required'
+  },
+  rarity: {
+    type: String,
+    required: 'Card rarity required'
+  },
+  colours: {
+    type: [String],
+    required: 'Card colours required'
+  },
+  set: {
+    type: String,
+    required: 'Card set required'
+  },
+  power: {
+    type: String,
+    required: 'Card power required'
+  },
+  toughness: {
+    type: String,
+    required: 'Card toughness required'
+  },
+  artist: {
+    type: String,
+    required: 'Card artist required'
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,

@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from "react";
 
-import Checkmark from "./Checkmark";
-
-const imgStyle = {
-  transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1),opacity linear .15s"
-};
-
-const selectedImgStyle = {
-  transform: "translateZ(0px) scale3d(0.9, 0.9, 1)",
-  transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1),opacity linear .15s"
-};
-
-const cont = {backgroundColor: "#eee", cursor: "pointer", overflow: "hidden", position: "relative"};
+import CardEllipsis from "./CardElipsis";
+import AddCardButton from "./AddCardButton";
+import { cont, selectedImgStyle, imgStyle, scaleY, scaleX } from '../../shared/constants';
 
 const SelectedImage = ({photo, margin, direction, top, left, selected}) => {
   const [isSelected, setIsSelected] = useState(selected);
 
   //calculate x,y scale
-  const sx = (100 - (30 / photo.width) * 100) / 100;
-  const sy = (100 - (30 / photo.height) * 100) / 100;
-  selectedImgStyle.transform = `translateZ(0px) scale3d(${sx}, ${sy}, 1)`;
+  selectedImgStyle.transform = `translateZ(0px) scale3d(${scaleX(photo.width)}, ${scaleY(photo.height)}, 1)`;
 
   if (direction === "column") {
     cont.position = "absolute";
@@ -36,11 +25,8 @@ const SelectedImage = ({photo, margin, direction, top, left, selected}) => {
   }, [selected]);
 
   return (
-    <div
-      style={{margin, ...cont}}
-      className={!isSelected ? "not-selected" : ""}
-    >
-      <Checkmark selected={isSelected ? true : false}/>
+    <div style={{margin, ...cont}} className={!isSelected ? "not-selected" : ""}>
+      <CardEllipsis selected={isSelected ? true : false} options={[<AddCardButton card={photo}/>]}/>
       <img
         alt={photo.title}
         style={isSelected ? {...imgStyle, ...selectedImgStyle} : {...imgStyle}}

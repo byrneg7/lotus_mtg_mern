@@ -6,6 +6,7 @@ const passport = require('passport');
 
 const keys = require('./config/keys');
 
+require('./models/Card');
 require('./models/Deck');
 require('./models/User');
 require('./services/passportConfig');
@@ -27,6 +28,7 @@ app.use(express.json());
 // ---------------- routes --------------------------------
 require('./routes/authRoutes')(app);
 require('./routes/deckRotues')(app);
+require('./routes/cardRoutes')(app);
 require('./routes/mtg_routes')(app);
 
 // ---------------- db ------------------------------------
