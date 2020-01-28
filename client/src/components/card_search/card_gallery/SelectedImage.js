@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import CardEllipsis from "./CardElipsis";
-import AddCardButton from "./AddCardButton";
+import { cardSearchDeselect, cardSearchSelect } from "../../../actions";
+import CardHighlight from "./CardHighlight";
 import { cont, selectedImgStyle, imgStyle, scaleY, scaleX } from '../../shared/constants';
 
 const SelectedImage = ({photo, margin, direction, top, left, selected}) => {
   const [isSelected, setIsSelected] = useState(selected);
+  const dispatch = useDispatch();
+  const currentUserId = useSelector(state => state.auth._id);
 
   //calculate x,y scale
   selectedImgStyle.transform = `translateZ(0px) scale3d(${scaleX(photo.width)}, ${scaleY(photo.height)}, 1)`;
@@ -16,23 +19,33 @@ const SelectedImage = ({photo, margin, direction, top, left, selected}) => {
     cont.top = top;
   }
 
-  const handleOnClick = e => {
-    setIsSelected(!isSelected);
+  const select = () => {
+    setIsSelected(true)
   };
 
-  useEffect(() => {
-    setIsSelected(selected);
-  }, [selected]);
+  const deselect = () => {
+    setIsSelected(false)
+  };
+
+  const handleOnClick = () => {
+    if (isSelected) {
+      deselect();
+      dispatch(cardSearchDeselect(photo))
+    } else {
+      select();
+      dispatch(cardSearchSelect({...photo, user: currentUserId}))
+    }
+  };
 
   return (
     <div style={{margin, ...cont}} className={!isSelected ? "not-selected" : ""}>
-      <CardEllipsis selected={isSelected ? true : false} options={[<AddCardButton card={photo}/>]}/>
+      <CardHighlight selected={isSelected ? true : false}/>
       <img
         alt={photo.title}
         style={isSelected ? {...imgStyle, ...selectedImgStyle} : {...imgStyle}}
         src={photo.imageUrl}
         {...photo}
-        onClick={handleOnClick}
+        onClick={() => handleOnClick()}
       />
       <style>{`.not-selected:hover{outline:2px solid #06befa}`}</style>
     </div>

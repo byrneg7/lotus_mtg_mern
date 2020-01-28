@@ -10,11 +10,11 @@ const cardSchema = new Schema({
     type: String,
     required: 'Card text required'
   },
-  imageUrl: {
+  src: {
     type: String,
     required: 'Card image URL required'
   },
-  cardTypes: {
+  types: {
     type: [String],
     required: 'Card type required'
   },
@@ -32,11 +32,9 @@ const cardSchema = new Schema({
   },
   power: {
     type: String,
-    required: 'Card power required'
   },
   toughness: {
     type: String,
-    required: 'Card toughness required'
   },
   artist: {
     type: String,
