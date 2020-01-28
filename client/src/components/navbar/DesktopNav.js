@@ -82,8 +82,8 @@ const DesktopNav = ({auth}) => {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>
-        <Link className="ml-2" to='/decks'>
-          Decks
+        <Link className="ml-2" to='/collection'>
+          Collection
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>

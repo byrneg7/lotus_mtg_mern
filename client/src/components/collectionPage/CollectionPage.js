@@ -3,15 +3,18 @@ import { Row, Col } from 'reactstrap';
 import { connect } from "react-redux";
 import axios from "axios";
 import uniqid from "uniqid";
-import DeckModal from "./DeckModal";
+import AddDeckModal from "./AddDeckModal";
 import FloatingAddButton from "../shared/FloatingAddButton";
 
-const DeckPage = ({id}) => {
+const CollectionPage = ({id}) => {
   useEffect(() => {
-    getDecks()
+    getDecks();
+    getCards();
   }, [id]);
 
   const [decks, setDecks] = useState([]);
+  const [cards, setCards] = useState([]);
+
   const [modalOpen, setModalOpen] = useState(false);
   const toggle = () => setModalOpen(!modalOpen);
 
@@ -19,6 +22,13 @@ const DeckPage = ({id}) => {
     if (id) {
       const res = await axios.get(`/api/user/${id}/decks`);
       setDecks(res.data)
+    }
+  };
+
+  const getCards = async () => {
+    if (id) {
+      const res = await axios.get(`/api/cards`);
+      setCards(res.data.cards)
     }
   };
 
@@ -34,11 +44,24 @@ const DeckPage = ({id}) => {
     }
   };
 
+  const renderCards = () => {
+    if (cards && cards.length > 0) {
+      return cards.map(card => {
+        return (
+          <Col xs="12" key={uniqid()}>
+            {card.name}
+          </Col>
+        )
+      })
+    }
+  };
+
   return (
     <Row>
       <FloatingAddButton action={toggle}/>
-      <DeckModal open={modalOpen} toggle={toggle} decks={decks} setDecks={setDecks}/>
+      <AddDeckModal open={modalOpen} toggle={toggle} decks={decks} setDecks={setDecks}/>
       {renderDecks()}
+      {renderCards()}
     </Row>
   )
 };
@@ -47,4 +70,4 @@ const mapStateToProps = state => {
   return {id: state.auth._id};
 };
 
-export default connect(mapStateToProps, null)(DeckPage);
+export default connect(mapStateToProps, null)(CollectionPage);

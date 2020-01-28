@@ -13,7 +13,7 @@ import {
 import { Button } from "@material-ui/core";
 import { makeToast } from "../../toasts";
 
-const DeckModal = ({open, toggle, decks, setDecks}) => {
+const AddDeckModal = ({open, toggle, decks, setDecks}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
@@ -73,4 +73,4 @@ const DeckModal = ({open, toggle, decks, setDecks}) => {
   );
 };
 
-export default DeckModal;
+export default AddDeckModal;

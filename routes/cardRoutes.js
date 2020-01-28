@@ -8,15 +8,19 @@ module.exports = (app) => {
   app.post('/api/cards', async (req, res) => {
     const cards = req.body.cards;
 
-    await Card.insertMany(cards)
+    const newCards = await Card.insertMany(cards);
+    const userById = await User.findById(req.user.id);
+    newCards.forEach(card => userById.cards.push(card));
+
+    await userById.save()
       .then(cards => res.send(cards))
       .catch(err => res.send(err))
   });
 
 
-  app.get('/api/user/:id/cards', async (req, res) => {
-    const {id} = req.params;
-    const user = await User.findById(id).populate('cards');
-    res.send(user.cards)
+  app.get('/api/cards', async (req, res) => {
+    const user = req.user;
+    const userWithCards = await User.findById(user.id).populate('cards');
+    res.send(userWithCards)
   })
 };

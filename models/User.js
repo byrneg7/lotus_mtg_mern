@@ -23,7 +23,7 @@ const userSchema = new Schema({
   cards: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'cards'
+      ref: 'cards',
     }
   ]
 });

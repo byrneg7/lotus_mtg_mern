@@ -9,7 +9,7 @@ const MobileNav = ({auth}) => {
       return (
         <div className="col mt-2">
           <Row className="mb-2">
-            <Link to="/decks">Decks</Link>
+            <Link to="/collection">Collection</Link>
           </Row>
           <Row className="mb-2">
             <Link to="/account">Profile</Link>
