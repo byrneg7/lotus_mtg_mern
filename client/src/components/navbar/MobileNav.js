@@ -12,6 +12,9 @@ const MobileNav = ({auth}) => {
             <Link to="/collection">Collection</Link>
           </Row>
           <Row className="mb-2">
+            <Link to="/decks">Decks</Link>
+          </Row>
+          <Row className="mb-2">
             <Link to="/account">Profile</Link>
           </Row>
           <Row className="mb-2">

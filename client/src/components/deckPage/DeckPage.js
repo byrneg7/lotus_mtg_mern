@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Row, Col } from 'reactstrap';
+import { Row } from 'reactstrap';
 import { connect } from "react-redux";
 import axios from "axios";
 import uniqid from "uniqid";
 
 import AddDeckModal from "./AddDeckModal";
 import FloatingAddButton from "../shared/FloatingAddButton";
+import DeckCard from "./DeckCard";
 
-const CollectionPage = ({id}) => {
+const DeckPage = ({id, history}) => {
+  const [decks, setDecks] = useState([]);
+  const [modalOpen, setModalOpen] = useState(false);
+
   useEffect(() => {
     getDecks();
   }, [id]);
 
-  const [decks, setDecks] = useState([]);
-
-  const [modalOpen, setModalOpen] = useState(false);
   const toggle = () => setModalOpen(!modalOpen);
 
   const getDecks = async () => {
@@ -27,11 +28,7 @@ const CollectionPage = ({id}) => {
   const renderDecks = () => {
     if (decks) {
       return decks.map(deck => {
-        return (
-          <Col xs="12" key={uniqid()}>
-            {deck.name}
-          </Col>
-        )
+        return <DeckCard deck={deck} key={uniqid()}/>
       })
     }
   };
@@ -49,4 +46,4 @@ const mapStateToProps = state => {
   return {id: state.auth._id};
 };
 
-export default connect(mapStateToProps, null)(CollectionPage);
+export default connect(mapStateToProps, null)(DeckPage);

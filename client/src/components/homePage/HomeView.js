@@ -1,10 +1,10 @@
 import React from 'react';
 import { Col } from 'reactstrap';
 
-import CardNameInput from "../card_search/CardNameInput";
+import CardNameInput from "../cardSearch/CardNameInput";
 import './home.scss';
 import SearchResults from "./SearchResults";
-import SaveCardButton from "../card_search/SaveCardButton";
+import SaveCardButton from "../cardSearch/SaveCardButton";
 
 const HomeView = () => {
   return (

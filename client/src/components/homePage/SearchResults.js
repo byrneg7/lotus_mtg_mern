@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import CardDisplay from "../card_search/card_gallery/CardDisplay";
+import CardDisplay from "../cardSearch/card_gallery/CardDisplay";
 
 const SearchResults = ({cards}) => {
 

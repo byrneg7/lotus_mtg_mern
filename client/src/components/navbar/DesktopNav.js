@@ -10,7 +10,7 @@ import Menu from '@material-ui/core/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
-import CardNameInput from "../card_search/CardNameInput";
+import CardNameInput from "../cardSearch/CardNameInput";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -84,6 +84,11 @@ const DesktopNav = ({auth}) => {
       <MenuItem onClick={handleMenuClose}>
         <Link className="ml-2" to='/collection'>
           Collection
+        </Link>
+      </MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link className="ml-2" to='/decks'>
+          Decks
         </Link>
       </MenuItem>
       <MenuItem onClick={handleMenuClose}>
