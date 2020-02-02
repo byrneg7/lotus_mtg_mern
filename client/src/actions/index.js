@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_CARDS, FETCH_USER, CARD_SEARCH_SELECT, CARD_SEARCH_DESELECT } from './types';
+import { FETCH_CARDS, FETCH_USER, CARD_SEARCH_SELECT, CARD_SEARCH_DESELECT, FETCH_DECKS } from './types';
 
 export const fetchUser = () => async dispatch => {
   const res = await axios.get('/api/current_user');
@@ -25,4 +25,9 @@ export const cardSearchDeselect = (card) => {
     type: CARD_SEARCH_DESELECT,
     payload: card
   }
+};
+
+export const fetchDecks = (id) => async dispatch => {
+  const res = await axios.get(`/api/user/${id}/decks`);
+  dispatch({type: FETCH_DECKS, payload: res.data});
 };

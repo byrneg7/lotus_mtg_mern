@@ -17,7 +17,7 @@ const Collection = () => {
     if (cards) {
       return cards.map(card => {
         return (
-          <img src={card.src} key={uniqid()}/>
+          <img src={card.src} key={uniqid()} alt='card'/>
         )
       })
     }

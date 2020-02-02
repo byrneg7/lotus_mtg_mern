@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 import {
   Modal,
   Form,
@@ -13,27 +12,25 @@ import {
 } from 'reactstrap';
 import { Button } from "@material-ui/core";
 import { makeToast } from "../../toasts";
-import { FETCH_DECKS } from "../../actions/types";
 
-const AddDeckModal = ({open, toggle, decks}) => {
-  const dispatch = useDispatch();
-
+const EditDeckModal = ({open, toggle, decks, setDecks}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = async () => {
-    await axios.post('/api/decks', {name, description})
-      .then((res) => {
-        toggle();
-        makeToast('success', 'Deck created successfully');
-        dispatch({type: FETCH_DECKS, payload: [...decks, res.data]})
-      })
-      .catch((err) => {makeToast('error', err.message)})
+    console.log('handle submit')
+    // await axios.post('/api/decks', {name, description})
+    //   .then((res) => {
+    //     toggle();
+    //     makeToast('success', 'Deck created successfully')
+    //     setDecks([...decks, res.data])
+    //   })
+    //   .catch((err) => {makeToast('error', err.message)})
   };
 
   const renderForm = () => {
     return (
-      <Form submit={e => e.preventDefault()}>
+      <Form>
         <FormGroup>
           <Label for="exampleEmail">Name</Label>
           <Input
@@ -70,11 +67,11 @@ const AddDeckModal = ({open, toggle, decks}) => {
         <ModalFooter>
           <Button variant="outlined" onClick={toggle}>Cancel</Button>
           <Button variant="outlined" disabled={name.length < 3} color="primary"
-                  onClick={() => handleSubmit()}>Submit</Button>
+                  onClick={() => handleSubmit()}>Edit</Button>
         </ModalFooter>
       </Modal>
     </div>
   );
 };
 
-export default AddDeckModal;
+export default EditDeckModal;
