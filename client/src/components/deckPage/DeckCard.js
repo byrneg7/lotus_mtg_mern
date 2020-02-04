@@ -16,7 +16,6 @@ import uniqid from "uniqid";
 import DeleteDeckModal from "./DeleteDeckModal";
 import EditDeckModal from "./EditDeckModal";
 import mtg_5_images from '../../assets/images/mtg_5_cards.png';
-import AddCardModal from "../cardSearch/card_gallery/AddCardModal";
 
 const useStyles = makeStyles({
   card: {

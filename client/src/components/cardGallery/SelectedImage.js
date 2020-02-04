@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cardSearchDeselect, cardSearchSelect } from "../../../actions";
+import { cardSearchDeselect, cardSearchSelect } from "../../actions";
 import CardHighlight from "./CardHighlight";
-import { cont, selectedImgStyle, imgStyle, scaleY, scaleX } from '../../shared/constants';
+import { cont, selectedImgStyle, imgStyle, scaleY, scaleX } from '../shared/constants';
 
 const SelectedImage = ({photo, margin, direction, top, left, selected}) => {
   const [isSelected, setIsSelected] = useState(selected);

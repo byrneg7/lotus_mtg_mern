@@ -27,7 +27,7 @@ export const cardSearchDeselect = (card) => {
   }
 };
 
-export const fetchDecks = (id) => async dispatch => {
-  const res = await axios.get(`/api/user/${id}/decks`);
-  dispatch({type: FETCH_DECKS, payload: res.data});
+export const fetchDecks = () => async dispatch => {
+  const res = await axios.get(`/api/decks`);
+  dispatch({type: FETCH_DECKS, payload: res.data.decks});
 };

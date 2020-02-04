@@ -13,7 +13,7 @@ const App = ({id, fetchUser, fetchDecks}) => {
   }, []);
 
   useEffect(() => {
-    fetchDecks(id);
+    fetchDecks();
   }, [id]);
 
   return (

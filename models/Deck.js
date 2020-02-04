@@ -11,10 +11,12 @@ const deckSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  cards: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'cards'
-  }
+  cards: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'cards',
+    }
+  ]
 });
 
 mongoose.model('decks', deckSchema);

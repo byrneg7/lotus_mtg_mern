@@ -1,13 +1,14 @@
 import React, { useCallback, useState } from "react";
 import Gallery from "react-photo-gallery";
 import SelectedImage from "./SelectedImage";
+import uniqId from "uniqid";
 
 const PhotoGallery = (props) => {
   const [selectAll] = useState(false);
 
   const imageRenderer = useCallback(
     (props) => (
-      <SelectedImage {...props} />
+      <SelectedImage {...props} key={uniqId()}/>
     ),
     [selectAll]
   );

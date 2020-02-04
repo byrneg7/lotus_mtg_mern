@@ -7,7 +7,7 @@ import AddDeckModal from "./AddDeckModal";
 import FloatingAddButton from "../shared/FloatingAddButton";
 import DeckCard from "./DeckCard";
 
-const DeckPage = () => {
+const AllDeckPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const decks = useSelector(state => state.decks);
 
@@ -30,4 +30,4 @@ const DeckPage = () => {
   )
 };
 
-export default DeckPage;
+export default AllDeckPage;

@@ -1,28 +1,18 @@
 import React from 'react';
 import axios from 'axios';
-import {
-  Modal,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
-} from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Button } from "@material-ui/core";
 import { makeToast } from "../../toasts";
 
-const DeleteDeckModal = ({open, toggle, decks, setDecks}) => {
+const DeleteDeckModal = ({open, toggle, deck}) => {
+
   const handleSubmit = async () => {
-  console.log('submit')
-  //   await axios.post('/api/decks', {name, description})
-  //     .then((res) => {
-  //       toggle();
-  //       makeToast('success', 'Deck created successfully')
-  //       setDecks([...decks, res.data])
-  //     })
-  //     .catch((err) => {makeToast('error', err.message)})
+    await axios.delete(`/api/decks/${deck._id}`)
+      .then((res) => {
+        toggle();
+        makeToast('success', 'Deck successfully deleted');
+      })
+      .catch((err) => {makeToast('error', err.message)})
   };
 
   return (

@@ -4,7 +4,7 @@ import { Button } from "@material-ui/core";
 import { makeStyles } from '@material-ui/core/styles';
 import { useSelector } from "react-redux";
 import Fab from '@material-ui/core/Fab';
-import SaveIcon from '@material-ui/icons/Save';
+import AddIcon from '@material-ui/icons/Add';
 import axios from "axios";
 import { makeToast } from "../../toasts";
 import Select from "react-select";
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const SaveCardButton = () => {
+const AddCardButton = () => {
   const decks = useSelector(state => state.decks);
   const [selectedOption, setSelectedOption] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
@@ -44,9 +44,10 @@ const SaveCardButton = () => {
 
   const toggle = () => setModalOpen(!modalOpen);
 
-  const handleSubmit = async () => {
-    await axios.post('/api/cards', {cards: selectedCards})
-      .then(() => makeToast('success', 'Cards successfully saved to collection'))
+  const handleSubmit = async (deck) => {
+    const {value, label} = deck;
+    await axios.post(`/api/decks/${value}/cards`, {cards: selectedCards})
+      .then(() => makeToast('success', `Cards successfully saved to ${label}`))
       .catch(err => makeToast('error', err.message))
   };
 
@@ -54,7 +55,7 @@ const SaveCardButton = () => {
     <span className={selectedCards.length > 0 ? 'save-card-container' : 'd-none save-card-container'}>
       <div className={classes.root}>
         <Fab aria-label="add" onClick={() => toggle()}>
-          <SaveIcon/>
+          <AddIcon/>
         </Fab>
       </div>
 
@@ -70,18 +71,18 @@ const SaveCardButton = () => {
              className="mt-3"
              value={selectedOption}
              onChange={handleChange}
-             options={[...deckOptions(), {value: null, label: "Add to library", type: "addTOLibary"}]}
+             options={deckOptions()}
            />
 
         </ModalBody>
         <ModalFooter>
           <Button variant="outlined" onClick={toggle}>Cancel</Button>
           <Button variant="outlined" color="primary" disabled={selectedOption.length < 1}
-                  onClick={() => handleSubmit()}>Save</Button>
+                  onClick={() => handleSubmit(selectedOption)}>Save</Button>
         </ModalFooter>
       </Modal>
     </span>
   );
 };
 
-export default SaveCardButton;
+export default AddCardButton;
