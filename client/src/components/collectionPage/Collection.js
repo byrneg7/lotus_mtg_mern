@@ -25,7 +25,7 @@ const Collection = () => {
           id: card._id,
           type: card.types,
           rarity: card.rarity,
-          mana: card.manaCost,
+          mana: card.mana,
           set: card.setName,
           types: card.types,
           colours: card.colors,

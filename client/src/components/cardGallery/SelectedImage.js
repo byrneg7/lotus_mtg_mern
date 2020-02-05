@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { cardSearchDeselect, cardSearchSelect } from "../../actions";
+import { cardSearchDeselect, selectedCards } from "../../actions";
 import CardHighlight from "./CardHighlight";
 import { cont, selectedImgStyle, imgStyle, scaleY, scaleX } from '../shared/constants';
 
@@ -33,7 +33,7 @@ const SelectedImage = ({photo, margin, direction, top, left, selected}) => {
       dispatch(cardSearchDeselect(photo))
     } else {
       select();
-      dispatch(cardSearchSelect({...photo, user: currentUserId}))
+      dispatch(selectedCards({...photo, user: currentUserId}))
     }
   };
 

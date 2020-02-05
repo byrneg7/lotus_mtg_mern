@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const _ = require('lodash');
 
 const Deck = mongoose.model('decks');
 const User = mongoose.model('users');
@@ -37,6 +38,36 @@ module.exports = (app) => {
     await deckById.save()
       .then(cards => res.send(cards))
       .catch(err => res.send(err))
+  });
+
+  app.delete('/api/decks/:deckId/cards', async (req, res) => {
+    const cardIds = req.body.cards;
+    const deckById = await Deck.findById(req.params.deckId);
+
+    // TODO: update based on all ids matching array - currently only deletes 1st id
+    const result = await Deck.findByIdAndUpdate(req.params.deckId, {
+      $pull: {
+        cards: cardIds[0]
+      }
+    }, {new: true});
+
+    await result.save()
+      .then(deck => res.send(deck))
+      .catch(err => res.send(err))
+
+    // cardIds.forEach(id => {
+    //   deckById.update({
+    //     $pull: {
+    //       cards: id
+    //     }
+    //   }, {new: true});
+    // });
+    //
+    // await deckById.save()
+    //   .then(deck => res.send(deck))
+    //   .catch(err => res.send(err));
+
+
   });
 
   app.delete('/api/decks/:deckId', async (req, res) => {

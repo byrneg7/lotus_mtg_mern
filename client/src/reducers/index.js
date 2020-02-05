@@ -11,5 +11,5 @@ export default combineReducers({
   form: formReducer,
   cardSearch: cardSearchReducer,
   decks: decksReducer,
-  cardSearchSelect: cardSearchSelectReducer
+  selectedCards: cardSearchSelectReducer
 })

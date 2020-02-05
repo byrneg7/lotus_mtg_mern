@@ -26,7 +26,7 @@ const AddCardButton = () => {
   const [selectedOption, setSelectedOption] = useState('');
   const [modalOpen, setModalOpen] = useState(false);
   const classes = useStyles();
-  const selectedCards = useSelector(state => state.cardSearchSelect);
+  const selectedCards = useSelector(state => state.selectedCards);
 
   const handleChange = selectedOption => {
     setSelectedOption(selectedOption);

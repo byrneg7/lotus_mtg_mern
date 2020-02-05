@@ -33,6 +33,9 @@ const cardSchema = new Schema({
   power: {
     type: String,
   },
+  mana:{
+    type: String,
+  },
   toughness: {
     type: String,
   },

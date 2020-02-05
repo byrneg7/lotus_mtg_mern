@@ -13,7 +13,7 @@ export const cardSearch = (data) => {
   }
 };
 
-export const cardSearchSelect = (card) => {
+export const selectedCards = (card) => {
   return {
     type: CARD_SEARCH_SELECT,
     payload: card
