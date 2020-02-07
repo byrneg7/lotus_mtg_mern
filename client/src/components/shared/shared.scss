@@ -4,3 +4,10 @@
   bottom: 27px !important;
   right: 10px !important;
 }
+
+.floating-delete-button{
+  position: fixed !important;
+  z-index: 10 !important;
+  bottom: 105px !important;
+  right: 10px !important;
+}

@@ -27,7 +27,7 @@ app.use(express.json());
 
 // ---------------- routes --------------------------------
 require('./routes/authRoutes')(app);
-require('./routes/deckRotues')(app);
+require('./routes/deckRoutes')(app);
 require('./routes/cardRoutes')(app);
 require('./routes/mtg_routes')(app);
 

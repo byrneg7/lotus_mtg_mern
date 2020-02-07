@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import PhotoGallery from "../cardGallery/PhotoGallery";
 import AddCardButton from "./AddCardButton";
+import DeleteCardButton from "./DeleteCardButton";
 
 const Collection = () => {
   const [cards, setCards] = useState([]);
@@ -47,7 +48,6 @@ const Collection = () => {
     <>
       <h1>All Cards</h1>
       <hr/>
-      <AddCardButton/>
       {renderHelper()}
     </>
   )

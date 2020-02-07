@@ -20,8 +20,7 @@ const DeleteDeckModal = ({open, toggle, deck}) => {
       <Modal isOpen={open} toggle={toggle} centered>
         <ModalHeader toggle={toggle}>Delete Deck</ModalHeader>
         <ModalBody>
-          Are you sure you wish to delete this deck? The cards will remain in your collection, but the deck will be
-          removed permanently.
+          Are you sure you wish to delete this deck? This action cannot be undone.
         </ModalBody>
         <ModalFooter>
           <Button variant="outlined" onClick={toggle}>Cancel</Button>

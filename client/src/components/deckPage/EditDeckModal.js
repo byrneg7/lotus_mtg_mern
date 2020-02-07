@@ -13,19 +13,17 @@ import {
 import { Button } from "@material-ui/core";
 import { makeToast } from "../../toasts";
 
-const EditDeckModal = ({open, toggle, decks, setDecks}) => {
+const EditDeckModal = ({open, toggle, deck}) => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
 
   const handleSubmit = async () => {
-    console.log('handle submit')
-    // await axios.post('/api/decks', {name, description})
-    //   .then((res) => {
-    //     toggle();
-    //     makeToast('success', 'Deck created successfully')
-    //     setDecks([...decks, res.data])
-    //   })
-    //   .catch((err) => {makeToast('error', err.message)})
+    await axios.put(`/api/decks/${deck._id}`, {name, description})
+      .then((res) => {
+        toggle();
+        makeToast('success', 'Deck created successfully')
+      })
+      .catch((err) => {makeToast('error', err.message)})
   };
 
   const renderForm = () => {

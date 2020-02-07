@@ -30,6 +30,18 @@ module.exports = (app) => {
     res.send(deck)
   });
 
+  app.put('/api/decks/:deckId', async (req, res) => {
+    const {name, description} = req.body;
+    const deck = await Deck.findOneAndUpdate({_id: req.params.deckId}, {name, description});
+
+    await deck.save()
+      .then(deck => res.send(deck))
+      .catch(err => res.send(err));
+
+    res.send(deck)
+  });
+
+
   app.post('/api/decks/:deckId/cards', async (req, res) => {
     const cards = req.body.cards;
     const deckById = await Deck.findById(req.params.deckId);
@@ -42,32 +54,15 @@ module.exports = (app) => {
 
   app.delete('/api/decks/:deckId/cards', async (req, res) => {
     const cardIds = req.body.cards;
-    const deckById = await Deck.findById(req.params.deckId);
-
-    // TODO: update based on all ids matching array - currently only deletes 1st id
     const result = await Deck.findByIdAndUpdate(req.params.deckId, {
       $pull: {
-        cards: cardIds[0]
+        cards: {$in: cardIds}
       }
     }, {new: true});
 
     await result.save()
       .then(deck => res.send(deck))
       .catch(err => res.send(err))
-
-    // cardIds.forEach(id => {
-    //   deckById.update({
-    //     $pull: {
-    //       cards: id
-    //     }
-    //   }, {new: true});
-    // });
-    //
-    // await deckById.save()
-    //   .then(deck => res.send(deck))
-    //   .catch(err => res.send(err));
-
-
   });
 
   app.delete('/api/decks/:deckId', async (req, res) => {

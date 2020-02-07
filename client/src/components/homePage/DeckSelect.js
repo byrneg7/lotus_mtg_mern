@@ -17,7 +17,7 @@ const DeckSelect = ({decks}) => {
       className="mt-3"
       value={selectedOption}
       onChange={handleChange}
-      options={[...deckOptions, {value: null, label: "Add to library", type: "addTOLibary"}]}
+      options={deckOptions}
     />
   )
 };

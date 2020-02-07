@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-
 const SaveCardButton = () => {
   const decks = useSelector(state => state.decks);
   const [selectedOption, setSelectedOption] = useState('');
@@ -45,7 +44,7 @@ const SaveCardButton = () => {
   const toggle = () => setModalOpen(!modalOpen);
 
   const handleSubmit = async () => {
-    await axios.post('/api/cards', {cards: selectedCards})
+    await axios.post('/api/cards', {cards: selectedCards, deck: selectedOption})
       .then(() => makeToast('success', 'Cards successfully saved to collection'))
       .catch(err => makeToast('error', err.message))
   };
@@ -70,7 +69,7 @@ const SaveCardButton = () => {
              className="mt-3"
              value={selectedOption}
              onChange={handleChange}
-             options={[...deckOptions(), {value: null, label: "Add to library", type: "addTOLibary"}]}
+             options={deckOptions()}
            />
 
         </ModalBody>
