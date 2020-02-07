@@ -6,13 +6,16 @@
   cursor: pointer;
 }
 
-.round-left-corners{
-  border-radius: 25px 25px;
+.round-right-corners-prepend{
+  border-radius: 0px 25px 25px 0px;
+  border-left: none;
 }
 
-.round-right-corners{
-  border-radius: 0px 25px 25px 0px;
+.round-left-corners-prepend{
+  border-radius: 25px 0px 0px 25px;
+  border-right: none;
 }
+
 
 .MuiIconButton-root:hover {
   background-color: rgba(0,0,0,0) !important;

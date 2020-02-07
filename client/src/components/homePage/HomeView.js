@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Col } from 'reactstrap';
 import { useDispatch } from 'react-redux';
 
-import CardNameInput from "../cardSearch/CardNameInput";
+import CardNameInput from "../cardSearch/CardSearchInput";
 import './home.scss';
 import SearchResults from "./SearchResults";
 import SaveCardButton from "../cardSearch/SaveCardButton";
